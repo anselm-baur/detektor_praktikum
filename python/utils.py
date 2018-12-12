@@ -19,6 +19,11 @@ delta_z = -0.01 * 10**6
 
 # upper board = 1, lower = 2
 def transform_into_xy(event,board):
+		# event[0]: chip number
+		# event[1]: colum (on chip)
+		# event[2]: row (on chip)
+		# event[3]: weight
+
     chips = np.array(event[0])
     cols = np.array(event[1])
     rows = np.array(event[2])
@@ -97,3 +102,29 @@ def read_root_alignment(file):
             events.append((list(proc_array[i][0]),list(pcol_array[i][0]),list(prow_array[i][0]),list(pq_array[i][0])))
 
     return events
+
+
+
+
+class ShutUpRoot():
+    """Context manager for silencing certain ROOT operations.  Usage:
+    with Quiet(level = ROOT.kInfo+1):
+       foo_that_makes_output
+
+    You can set a higher or lower warning level to ignore different
+    kinds of messages.  After the end of indentation, the level is set
+    back to what it was previously.
+    """
+    def __init__(self, level=ROOT.kError):
+        self.level = level
+
+    def __enter__(self):
+        self.oldlevel = ROOT.gErrorIgnoreLevel
+        ROOT.gErrorIgnoreLevel = self.level
+
+    def __exit__(self, type, value, traceback):
+        ROOT.gErrorIgnoreLevel = self.oldlevel
+
+
+def gauss(x, A, mu, sigma):
+	return A*np.exp(-(x-mu)**2/(2.*sigma**2)) 
