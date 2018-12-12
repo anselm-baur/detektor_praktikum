@@ -50,7 +50,7 @@ def transform_into_xy(event,board):
         return TVector3(x,2*y_chip-y,delta_z)
 
 # function to read a root file and return the needed information as a list of tuples (chip,column,row,weight)
-def read_root(board1,board2,i):
+def read_root_measurement(board1,board2,i):
     f_up = ROOT.TFile.Open('data/{}/measuring1/meas_{}.root'.format(board1,i),'read')
     f_down = ROOT.TFile.Open('data/{}/measuring1/meas_{}.root'.format(board2,i),'read')
     tree_up = f_up.Get('Xray/events')
@@ -73,14 +73,27 @@ def read_root(board1,board2,i):
         print('WARNING: Not the same number of events!')
         return events_up, events_down
 
-    #if len(up_proc_array) != len(up_pcol_array) or len(up_proc_array) != len(up_prow_array) or len(up_proc_array) != len(up_pq_array):
-    #    print('ups')
-    #    return events
-
-
     for i in range(len(up_proc_array)):
         if up_proc_array[i][0] != [] and len(up_proc_array[i][0]) < 5 and down_proc_array[i][0] != [] and len(down_proc_array[i][0]) < 5:
             events_up.append((list(up_proc_array[i][0]),list(up_pcol_array[i][0]),list(up_prow_array[i][0]),list(up_pq_array[i][0])))
             events_down.append((list(down_proc_array[i][0]), list(down_pcol_array[i][0]), list(down_prow_array[i][0]),list(down_pq_array[i][0])))
 
     return events_up, events_down
+
+# function to read an alignemnt file and return the single events
+def read_root_alignment(file):
+    f = ROOT.TFile.Open(file,'read')
+    tree = f.Get('Xray/events')
+
+    proc_array = rn.tree2array(tree, branches=['proc'])
+    pcol_array = rn.tree2array(tree, branches=['pcol'])
+    prow_array = rn.tree2array(tree, branches=['prow'])
+    pq_array = rn.tree2array(tree, branches=['pq'])
+
+    events = []
+
+    for i in range(len(proc_array)):
+        if proc_array[i][0] != [] and len(proc_array[i][0]) < 5:
+            events.append((list(proc_array[i][0]),list(pcol_array[i][0]),list(prow_array[i][0]),list(pq_array[i][0])))
+
+    return events
