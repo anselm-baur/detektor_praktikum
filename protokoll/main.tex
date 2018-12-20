@@ -20,6 +20,7 @@
 
 \usepackage{siunitx}
 \usepackage{tikz}
+\usepackage{subfigure}
 
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
 \usepackage{xcolor}  % Coloured text etc.
@@ -165,6 +166,24 @@
 	Messung mit Latency im Bereich 68-83. Auswertung der Hitmaps, dabei wurden Events mit Double Colum Error ignoriert. Die Messung mit einer Latency von 81 ergab die meisten Hits. Alle weiteren Messungen wurden mit dieser Latency durchgeführt.
 	
 	\section{Bestimmung der Ausrichtung zueinander}
+	Zur Bestimmung der Ausrichtung der beiden Baords zueinander, wurde eine radioaktive Quelle an zwei unterschiedlichen Stellen über den Boards platziert. Die Durchnummerierung und die Lage der x und y Achse sind in Abbildung \ref{fig:board} dargestellt. Die Ergebnisse der Alignmentmessung mit den zwei unterschiedlichen Positionen der Quelle sind in Abbildung \ref{fig:alignment} a) und b) dargestellt.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{fig/board.eps}
+		\caption{Aufbau eines Boards mit 16 Pixel Chips.}
+		\label{fig:board}
+	\end{figure}
+	\begin{figure}
+		\centering
+	\subfigure[Erste Position der Quelle]{
+	\includegraphics[width=\textwidth]{fig/alignment_1.eps}}
+	\label{fig:alignment_1}
+	\subfigure[Zweite Position der Quelle]{
+	\includegraphics[width=\textwidth]{fig/alignment_2.eps}}
+	\label{fig:alignment_2}	
+	\caption{Zur Bestimmung der Ausrichtung der beiden Boards zueinander wurde eine aktive Quelle an zwei unterschiedlichen Stellen auf dem Szintillator-Zähler positioniert.}
+	\label{fig:alignment}
+	\end{figure}
 	
     \chapter{Versuchsvorbereitung} 
     
