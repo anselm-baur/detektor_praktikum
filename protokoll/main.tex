@@ -142,7 +142,7 @@
 %    -0.5cm, trim=0cm 4cm 0cm 0cm, clip ]{./fig/fig_aufgabenblatt}
 %
 	
-	\chapter{Stichworte}
+	\chapter{Versuchsaufbau und Alignment}
 	\begin{itemize}
 		\item Messanordnung aufgebaut
 		\item Module kalibriert
@@ -170,44 +170,56 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.7\textwidth]{fig/board.eps}
-		\caption{Aufbau eines Boards mit 16 Pixel Chips.}
+		\caption{Aufbau eines Boards mit 16 Pixel Chips. Jeder Pixel Chip besteht aus 52 x 80 einzelnen Pixeln und hat eine Größe von \SI{8100}{\micro\meter} x \SI{8100}{\micro\meter}}
 		\label{fig:board}
 	\end{figure}
 	\begin{figure}
 		\centering
 	\subfigure[Erste Position der Quelle]{
-	\includegraphics[width=\textwidth]{fig/alignment_1.eps}}
+	\includegraphics[width=\textwidth]{fig/alignment_1_fit.eps}}
 	\label{fig:alignment_1}
 	\subfigure[Zweite Position der Quelle]{
-	\includegraphics[width=\textwidth]{fig/alignment_2.eps}}
+	\includegraphics[width=\textwidth]{fig/alignment_2_fit.eps}}
 	\label{fig:alignment_2}	
 	\caption{Zur Bestimmung der Ausrichtung der beiden Boards zueinander wurde eine aktive Quelle an zwei unterschiedlichen Stellen auf dem Szintillator-Zähler positioniert.}
 	\label{fig:alignment}
 	\end{figure}
+
+	Zur Bestimmung der Position der Quelle auf den Boards, wurden die Messwerte durch einen Gauss-Fit (Gl. \ref{eq:gauss}) approximiert - in Abbildung \ref{fig:alignment} als durchgezogene Linie dargestellt.
 	
-    \chapter{Versuchsvorbereitung} 
+\begin{equation}
+ 	A\cdot e^{-\frac{(x-\mu)^{2}}{2\cdot \sigma^{2}}}
+ 	\label{eq:gauss}
+\end{equation}
+	
+	Die Parameter für den besten Fit sind in Tabelle \ref{tab:alignment} aufgeführt.
+	
+	\xtable{htb}{alignment}{Fit Parameter für die Position der radioaktiven Quelle auf den Boards.}{} 
+	
+	
+    %\chapter{Versuchsvorbereitung} 
     
     %\input{./chap/aufbau.tex}
    
     % appendix for more or less interesting calculations
-    \Appendix
-    \chapter*{\appendixname} \addcontentsline{toc}{chapter}{\appendixname}
+    %\Appendix
+    %\chapter*{\appendixname} \addcontentsline{toc}{chapter}{\appendixname}
     % to make the appendix appear in ToC without number. \appendixname = 
     % Appendix or Anhang (depending on chosen language)
-    \input{./chap/appendix.tex} %\cleardoublepage
+    %\input{./chap/appendix.tex} %\cleardoublepage
 
 	\begingroup
 	\let\clearpage\relax
 
     % Bibliography
-    \TheBibliography
+    %\TheBibliography
 
     % BIBTEX
     % use if you want citations to appear even if they are not referenced to: 
     % \nocite{*} or maybe \nocite{Kon64,And59} for specific entries
     %\nocite{*}
-    \bibliographystyle{plain}
-    \bibliography{lit.bib}
+    %\bibliographystyle{plain}
+    %\bibliography{lit.bib}
 
     % THEBIBLIOGRAPHY
     %\begin{thebibliography}{000}
