@@ -143,14 +143,11 @@
 %
 	
 	\chapter{Versuchsaufbau und Alignment}
-	\begin{itemize}
-		\item Messanordnung aufgebaut
-		\item Module kalibriert
-		\item External trigger und clock in pxar setzen
-		\item latency Test zwischen Trigger und Detektormodulen
-	\end{itemize}
-	\section{Experimenteller Aufbau}
-	Der experimentelle Aufbau ist in Abbildung \ref{fig:aufbau} dargestellt.
+	Der Versuchsaufbau ist mehrere Schritte unterteilt.
+	Die ersten Versuchstage beinhalteten den Aufbau der Messanordnung. Der experimentelle Aufbau ist in Abbildung \ref{fig:aufbau} dargestellt. Anschließend wurde eine Kalibrierung der Module durchgeführt. Mittels Software wurden alle kaputten Pixel von der Auswertung ausgeschlossen.
+	An einem weiteren Versuchstag wurden der external trigger und die clock in pXar gesetzt.
+	Außerdem wurde ein Latency Test zwischen Trigger und Detektormodulen durchgeführt.
+	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.7\textwidth]{fig/aufbau.eps}
@@ -160,10 +157,10 @@
 
 	\section{Latency Scan}
 	\subsection{Mit aktiver Quelle}
-	Start einer Langzeitmessung mit Latency im Bereich 0 - 150. 
-	Probleme mit den Registereinträgen beim Auslesen, deshalb wurde Messung mit kosmischen Myonen wiederholt. 
+	Zuerst wurde eine Langzeitmessung mit Latency im Bereich 0 - 150 gestartet. 
+	Es gab mehrere Probleme mit den Registereinträgen beim Auslesen, deshalb wurde die Messung mit kosmischen Myonen wiederholt. 
 	\subsection{Mit kosmischen Myonen}
-	Messung mit Latency im Bereich 68-83. Auswertung der Hitmaps, dabei wurden Events mit Double Colum Error ignoriert. Die Messung mit einer Latency von 81 ergab die meisten Hits. Alle weiteren Messungen wurden mit dieser Latency durchgeführt.
+	Hier wurde die Messung mit Latency im Bereich 68-83 durchgeführt und anschließend die Hitmaps ausgewertet. Dabei wurden Events mit Double Colum Error ignoriert. Die Messung mit einer Latency von 81 ergab die meisten Hits. Alle weiteren Messungen wurden mit dieser Latency durchgeführt.
 	
 	\section{Bestimmung der Ausrichtung zueinander}
 	Zur Bestimmung der Ausrichtung der beiden Baords zueinander, wurde eine radioaktive Quelle an zwei unterschiedlichen Stellen über den Boards platziert. Die Durchnummerierung und die Lage der x und y Achse sind in Abbildung \ref{fig:board} dargestellt. Die Ergebnisse der Alignmentmessung mit den zwei unterschiedlichen Positionen der Quelle sind in Abbildung \ref{fig:alignment} a) und b) dargestellt.
@@ -173,6 +170,7 @@
 		\caption{Aufbau eines Boards mit 16 Pixel Chips. Jeder Pixel Chip besteht aus 52 x 80 einzelnen Pixeln und hat eine Größe von \SI{8100}{\micro\meter} x \SI{8100}{\micro\meter}}
 		\label{fig:board}
 	\end{figure}
+	
 	\begin{figure}
 		\centering
 	\subfigure[Erste Position der Quelle]{
