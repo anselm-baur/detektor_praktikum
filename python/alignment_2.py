@@ -87,26 +87,79 @@ ay = fig.add_subplot(122)
 #ax.bar3d(data_matrix)
 x_upper_select = x_hist_upper!=0
 x_lower_select = x_hist_lower!=0
-
-x_fit_select = x_hist_upper[10000:20000]!=0
-x_fit_hist = x_hist_upper[10000:20000]
-popt, pcov = curve_fit(utils.gauss, np.array(range(10000,20000))[x_fit_select], x_fit_hist[x_fit_select], p0=[40000, 15000, 10000])
-print(popt)
-A = popt[0]
-mu = popt[1]
-sigma = popt[2]
-
-ax.plot(np.array(range(0,X_SIZE))[x_upper_select], x_hist_upper[x_upper_select], 'b.', alpha=0.5, label="upper")
-ax.plot(np.array(range(0,X_SIZE))[x_lower_select], x_hist_lower[x_lower_select], 'r.', alpha=0.5, label="lower")
-ax.plot(range(0,X_SIZE), utils.gauss(range(0,X_SIZE), A, mu, sigma), 'k-', label="fit_upper")
-ax.set_xlabel("x position in mu")
-
-
 y_upper_select = y_hist_upper!=0
 y_lower_select = y_hist_lower!=0
-ay.plot(np.array(range(0,Y_SIZE))[y_upper_select], y_hist_upper[y_upper_select], 'b.', alpha=0.5, label="upper")
-ay.plot(np.array(range(0,Y_SIZE))[y_upper_select], y_hist_lower[y_lower_select], 'r.', alpha=0.5, label="lower")
-ay.set_xlabel("y position in mu")
+
+
+
+# Fit environment for x direction
+x_min = 0
+x_max = 30000
+
+# upper board
+x_fit_select = x_hist_upper[x_min:x_max]!= 0 # filter out bins where zero entries
+x_fit_hist = x_hist_upper[x_min:x_max] # histogramm contains just the bins with entries
+popt, pcov = curve_fit(utils.gauss, np.array(range(x_min,x_max))[x_fit_select], x_fit_hist[x_fit_select], p0=[40000, 15000, 10000])
+print("x upper board:")
+print(popt)
+A_up = popt[0]
+mu_up = popt[1]
+sigma_up = popt[2]
+
+# lower board
+x_fit_select = x_hist_lower[x_min:x_max]!= 0 # filter out bins where zero entries
+x_fit_hist = x_hist_lower[x_min:x_max] # histogramm contains just the bins with entries
+popt, pcov = curve_fit(utils.gauss, np.array(range(x_min,x_max))[x_fit_select], x_fit_hist[x_fit_select], p0=[40000, 15000, 10000])
+print("x lower board:")
+print(popt)
+A_low = popt[0]
+mu_low = popt[1]
+sigma_low = popt[2]
+
+
+
+
+# Fit environment for y direction
+y_min = 0
+y_max = Y_SIZE
+
+#upper board
+y_fit_select = y_hist_upper[y_min:y_max]!= 0
+y_fit_hist = y_hist_upper[y_min:y_max]
+popt, pcov = curve_fit(utils.gauss, np.array(range(y_min,y_max))[y_fit_select], y_fit_hist[y_fit_select], p0=[25000, 8000, 10000])
+print("y upper board:")
+print(popt)
+A_yup = popt[0]
+mu_yup = popt[1]
+sigma_yup = popt[2]
+
+#lower board
+y_fit_select = y_hist_lower[y_min:y_max]!= 0
+y_fit_hist = y_hist_lower[y_min:y_max]
+popt, pcov = curve_fit(utils.gauss, np.array(range(y_min,y_max))[y_fit_select], y_fit_hist[y_fit_select], p0=[8000, 8000, 10000])
+print("y lower board:")
+print(popt)
+A_ylow = popt[0]
+mu_ylow = popt[1]
+sigma_ylow = popt[2]
+
+
+
+
+ax.plot(np.array(range(0,X_SIZE))[x_upper_select]/1000, x_hist_upper[x_upper_select], 'b.', alpha=0.5, label="upper")
+ax.plot(np.array(range(0,X_SIZE))[x_lower_select]/1000, x_hist_lower[x_lower_select], 'r.', alpha=0.5, label="lower")
+ax.plot(np.arange(0,X_SIZE)/1000, utils.gauss(range(0,X_SIZE), A_up, mu_up, sigma_up), 'b-', label="fit_upper")
+ax.plot(np.arange(0,X_SIZE)/1000, utils.gauss(range(0,X_SIZE), A_low, mu_low, sigma_low), 'r-', label="fit_upper")
+ax.set_xlabel("x position in mm")
+ax.set_ylabel("intensity in arbitrary unit")
+
+
+
+ay.plot(np.array(range(0,Y_SIZE))[y_upper_select]/1000, y_hist_upper[y_upper_select], 'b.', alpha=0.5, label="upper")
+ay.plot(np.array(range(0,Y_SIZE))[y_upper_select]/1000, y_hist_lower[y_lower_select], 'r.', alpha=0.5, label="lower")
+ay.plot(np.arange(0,Y_SIZE)/1000, utils.gauss(range(0,Y_SIZE), A_yup, mu_yup, sigma_yup), 'b-', label="fit_upper")
+ay.plot(np.arange(0,Y_SIZE)/1000, utils.gauss(range(0,Y_SIZE), A_ylow, mu_ylow, sigma_ylow), 'r-', label="fit_lower")
+ay.set_xlabel("y position in mm")
 
 plt.legend()
 plt.show()
