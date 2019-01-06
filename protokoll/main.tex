@@ -215,16 +215,16 @@
 	\end{equation}
 	und aus (\ref{matrixgl}) sowohl $d_x$ als auch $d_y$.\\
 	Jetzt hat man die komplette Transformationsmatrix um jeden Punkt aus S' vom unteren Board in das Koordinatensystem S vom oberen Board zu überführen.\\
-	In unserem Fall ist $\theta=$, $d_x=$ und $d_y=$. Im Allgemeinen ist es notwendig einen Check durchzuführen ob die Transformation stimmt. In unserem Fall heißt das: Ergibt die Matrix, angewendet auf die Koordinaten der beiden Gauss-Fits des unteren Boards genau die Koordinaten der Gauss-Fits des oberen Boards wieder? Antwort: Ja, mit einer kleinen Abweichung, die jeweils kleiner als ein Pixel-Durchmesser ist. Man beachte außerdem noch, ob man mit oder gegen den Uhrzeigersinn drehen muss!\\
+	In unserem Fall ist $\theta=\SI{0,021}{\radian}$, $d_x=\SI{277}{\micro\meter}$ und $d_y=\SI{-607}{\micro\meter}$. Im Allgemeinen ist es notwendig einen Check durchzuführen ob die Transformation stimmt. In unserem Fall heißt das: Ergibt die Matrix, angewendet auf die Koordinaten der beiden Gauss-Fits des unteren Boards genau die Koordinaten der Gauss-Fits des oberen Boards wieder? Antwort: Ja, mit einer kleinen Abweichung, die jeweils kleiner als ein Pixel-Durchmesser ist. Man beachte außerdem noch, ob man mit oder gegen den Uhrzeigersinn drehen muss!\\
 	
 	
 	\chapter{Datennahme und Auswertung der Messdaten}
 	\section{Datennahme}
-	Es wurde im Zeitraum von einer Woche mit einem Automatisierten Bash-Skript fortlaufend immer 10 min am Stück gemessen. Die Messwerte wurden in Form eines Root-Trees gespeichert. So konnte für die Auswertung auf die einzelnen Events zurück gegriffen werden. Insgesamt enthält der Datensatz ca.300 Dateien, welche jeweils 10 min Messzeit enthalten.
+	Es wurde im Zeitraum von einer Woche mit einem automatisierten Bash-Skript fortlaufend immer 10 min am Stück gemessen. Die Messwerte wurden in Form eines Root-Trees gespeichert. So konnte für die Auswertung auf die einzelnen Events zurück gegriffen werden. Insgesamt enthält der Datensatz ca.300 Dateien, welche jeweils 10 min Messzeit enthalten.
 	
 	 
 	\section{Winkelverteilung der Myonen}
-	Aufgrund der Rotationssymmetrie um die z-Achse wurde um den Zenitwinkel zu berechnen mit dem Satz des Pythagoras der horizontale Abstand $r$ zwischen dem Auftreffpunkt am oberen Board und dem Auftreffpunkt am unteren Board bestimmt. Mithilfe des arctan() und dem Abstand der Boards (1 cm) wurde dann der Zenitwinkel berechnet (Auslenkung zu Flächennormalen). Die Winkelverteilung für die Events, die sowohl auf dem oberen als auch auf dem unteren Board detektiert wurden ist in dem Histogramm in Abbildung \ref{fig:winkelverteilung} sowohl für den nicht ausgerichteten Fall der Boards als auch für den ausgerichteten Fall dargestellt. Es ist leicht zu erkennen, dass die Ausrichtung nahezu keine signifikante Auswirkung auf das Ergebnis hat.
+	Aufgrund der Rotationssymmetrie um die z-Achse wurde um den Zenitwinkel zu berechnen mit dem Satz des Pythagoras der horizontale Abstand $r$ zwischen dem Auftreffpunkt am oberen Board und dem Auftreffpunkt am unteren Board bestimmt. Mithilfe des arctan() und dem Abstand der Boards (1 cm) wurde dann der Zenitwinkel berechnet (Auslenkung zur Flächennormalen). Die Winkelverteilung für die Events, die sowohl auf dem oberen als auch auf dem unteren Board detektiert wurden ist in dem Histogramm in Abbildung \ref{fig:winkelverteilung} sowohl für den nicht ausgerichteten Fall der Boards als auch für den ausgerichteten Fall dargestellt. Es ist leicht zu erkennen, dass die Ausrichtung nahezu keine signifikante Auswirkung auf das Ergebnis hat.
 	
 	\begin{figure}
 		\centering
