@@ -163,7 +163,7 @@
 	Hier wurde die Messung mit Latency im Bereich 68-83 durchgeführt und anschließend die Hitmaps ausgewertet. Dabei wurden Events mit Double Colum Error ignoriert. Die Messung mit einer Latency von 81 ergab die meisten Hits. Alle weiteren Messungen wurden mit dieser Latency durchgeführt.
 	
 	\section{Bestimmung der Ausrichtung zueinander}
-	Zur Bestimmung der Ausrichtung der beiden Baords zueinander, wurde eine radioaktive Quelle an zwei unterschiedlichen Stellen über den Boards platziert. Die Durchnummerierung und die Lage der x und y Achse sind in Abbildung \ref{fig:board} dargestellt. Die Ergebnisse der Alignmentmessung mit den zwei unterschiedlichen Positionen der Quelle sind in Abbildung \ref{fig:alignment} a) und b) dargestellt.
+	Zur Bestimmung der Ausrichtung der beiden Boards zueinander, wurde eine radioaktive Quelle an zwei unterschiedlichen Stellen über den Boards platziert. Die Durchnummerierung und die Lage der x und y Achse sind in Abbildung \ref{fig:board} dargestellt. Die Ergebnisse der Alignmentmessung mit den zwei unterschiedlichen Positionen der Quelle sind in Abbildung \ref{fig:alignment} a) und b) dargestellt.
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.7\textwidth]{fig/board.eps}
@@ -194,6 +194,44 @@
 	
 	\xtable{htb}{alignment}{Fit Parameter für die Position der radioaktiven Quelle auf den Boards.}{} 
 	
+	{\subsection{Ermittlung der Drehmatrix}}
+	Nachdem man die Position der Quelle durch die Gauss-Fits ermittelt hat kann man die Ausrichtung der beiden Boards zueinander bestimmen. Man definiere sich je einen 2D Vektor pro Board, der von Position 1 der Quelle zu Position 2 der Quelle zeigt. Diese beiden Vektoren haben die selbe Länge, sind aber in unterschiedlichen Koordinatensystemen definiert (oberer Vektor V im System S des oberen Boards, unterer Vektor V' im System S' des unteren Boards).\\
+	Nun braucht man eine Transformationsmatrix M, die den Vektor V' aus S' in S darstellt
+	\begin{equation} \label{matrixgl}
+	V=M\cdot V'
+	\end{equation}
+	Diese Matrix beinhaltet eine Drehung um $\theta$ (definiert hier um die z-Achse) und eine Translation um ($d_x, d_y$):
+	\begin{equation*}
+	\left( \begin{array}{rrrr}
+	\cos \theta  & ~-\sin \theta & ~~d_x  \\
+	\sin \theta & ~\cos \theta & d_y  \\
+	0 & 0 & 1  \\
+	\end{array}\right).
+	\end{equation*}
+	Die Aufgabe ist es den Winkel $\theta$ und die beiden Translationen um $d_x$ und $d_y$ zu finden.
+	Bildet man nun das Skalarprodukt der beiden Vektoren V und V' so erhält man den Drehwinkel
+	\begin{equation}
+	\theta=\arccos\frac{\vec{V}\cdot \vec{V'}}{|\vec{V}||\vec{V'}|}
+	\end{equation}
+	und aus (\ref{matrixgl}) sowohl $d_x$ als auch $d_y$.\\
+	Jetzt hat man die komplette Transformationsmatrix um jeden Punkt aus S' vom unteren Board in das Koordinatensystem S vom oberen Board zu überführen.\\
+	In unserem Fall ist $\theta=$, $d_x=$ und $d_y=$. Im Allgemeinen ist es notwendig einen Check durchzuführen ob die Transformation stimmt. In unserem Fall heißt das: Ergibt die Matrix, angewendet auf die Koordinaten der beiden Gauss-Fits des unteren Boards genau die Koordinaten der Gauss-Fits des oberen Boards wieder? Antwort: Ja, mit einer kleinen Abweichung, die jeweils kleiner als ein Pixel-Durchmesser ist. Man beachte außerdem noch, ob man mit oder gegen den Uhrzeigersinn drehen muss!\\
+	
+	
+	\chapter{Datennahme und Auswertung der Messdaten}
+	\section{Datennahme}
+	Es wurde im Zeitraum von einer Woche mit einem Automatisierten Bash-Skript fortlaufend immer 10 min am Stück gemessen. Die Messwerte wurden in Form eines Root-Trees gespeichert. So konnte für die Auswertung auf die einzelnen Events zurück gegriffen werden. Insgesamt enthält der Datensatz ca.300 Dateien, welche jeweils 10 min Messzeit enthalten.
+	
+	 
+	\section{Winkelverteilung der Myonen}
+	Aufgrund der Rotationssymmetrie um die z-Achse wurde um den Zenitwinkel zu berechnen mit dem Satz des Pythagoras der horizontale Abstand $r$ zwischen dem Auftreffpunkt am oberen Board und dem Auftreffpunkt am unteren Board bestimmt. Mithilfe des arctan() und dem Abstand der Boards (1 cm) wurde dann der Zenitwinkel berechnet (Auslenkung zu Flächennormalen). Die Winkelverteilung für die Events, die sowohl auf dem oberen als auch auf dem unteren Board detektiert wurden ist in dem Histogramm in Abbildung \ref{fig:winkelverteilung} sowohl für den nicht ausgerichteten Fall der Boards als auch für den ausgerichteten Fall dargestellt. Es ist leicht zu erkennen, dass die Ausrichtung nahezu keine signifikante Auswirkung auf das Ergebnis hat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth]{fig/winkelverteilung.eps}
+		\caption{Winkelverteilung der kosmischen Myonen, die aus den Messdaten zugeordnet werden konnten. Dargestellt ist der Zenitwinkel $\theta$}
+		\label{fig:winkelverteilung}
+	\end{figure}
 	
     %\chapter{Versuchsvorbereitung} 
     

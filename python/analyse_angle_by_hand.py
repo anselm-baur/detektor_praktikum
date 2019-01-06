@@ -50,5 +50,7 @@ fig = plt.figure()
 
 plt.hist(angles, bins=100, alpha=0.5, label="not aligned")
 plt.hist(angles_aligned, bins=100, alpha=0.5, label="aligned")
+plt.xlabel(r'$\theta$ Winkel in rad')
+plt.ylabel("Intensität in beliebiger Einheit")
 plt.legend()
 plt.show()
